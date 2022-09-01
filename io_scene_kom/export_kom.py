@@ -98,28 +98,39 @@ def WritePolygonIndices(f, mesh):
             indices.append(index)
         # convert from right-handed to left-handed
         # 3 2 1
-        print(indices)
-        f.write(
-            "f "
-            + " "
-            + str(indices[3])
-            + "/"
-            + str(indices[2])
-            + "/"
-            + str(indices[1])
-            + "\n"
-        )
-        # 3 1 0
-        f.write(
-            "f "
-            + " "
-            + str(indices[3])
-            + "/"
-            + str(indices[1])
-            + "/"
-            + str(indices[0])
-            + "\n"
-        )
+        if len(indices) == 4:
+            f.write(
+                "f"
+                + " "
+                + str(indices[3])
+                + "/"
+                + str(indices[2])
+                + "/"
+                + str(indices[1])
+                + "\n"
+            )
+            # 3 1 0
+            f.write(
+                "f "
+                + " "
+                + str(indices[3])
+                + "/"
+                + str(indices[1])
+                + "/"
+                + str(indices[0])
+                + "\n"
+            )
+        elif len(indices) == 3:
+            f.write(
+                "f"
+                + " "
+                + str(indices[0])
+                + " "
+                + str(indices[2])
+                + " "
+                + str(indices[1])
+                + "\n"
+            )
 
 
 def ExportFile(filepath):
